@@ -8,10 +8,9 @@ namespace SortePer
 {
     public class Human : Player
     {
-
-
-        public Human(string name) : base(name)
+        public Human(string name, Func<int> inputMethod) : base(name)
         {
+            SetInputMethod(inputMethod);
         }
     }
 }

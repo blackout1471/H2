@@ -8,10 +8,14 @@ namespace SortePer
 {
     class BotPlayer : Player
     {
-
         public BotPlayer() : base("Bot")
         {
+            SetInputMethod(() => GetRandomNumber());
+        }
 
+        private int GetRandomNumber()
+        {
+            return 0;
         }
     }
 }

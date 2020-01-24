@@ -10,20 +10,42 @@ namespace SortePer
     {
         static void Main(string[] args)
         {
-            Game game = new SortePerGame(new Player[] { new Human("Emil"), new Human("Bot") });
+            Game game = new SortePerGame(new Player[] { new Human("Emil", () => GetNumberFromInput()), new BotPlayer() });
             game.StartGame();
+            Console.WriteLine(game.StartGameMessage());
 
-            while (!game.HasGameEnded())
+            bool hasGameEnded = false;
+            while (!hasGameEnded)
             {
-                Console.WriteLine("It is {0}'s turn", game.CurrentPlayer.Name);
-                Console.WriteLine("Choose between {0}-{1} of your enemies cards", 0, game.PeekNextPlayer.Cards.Count-1);
+                Console.WriteLine(game.PlayerTakeTurnMessage());
+                game.PlayerTakeTurn();
 
-                game.PlayerTakeTurn(5);
-                game.ChangePlayer();
+                Console.WriteLine(game.ChangePlayerMessage());
+                Console.ReadKey();
+
+                Console.Clear();
+
+                if (!(hasGameEnded = game.HasGameEnded()))
+                    game.ChangePlayer();
             }
 
-            Console.WriteLine("");
+            Console.WriteLine(game.GameHasEndedMessage());
             Console.ReadKey();
+        }
+
+        static int GetNumberFromInput()
+        {
+            bool validated = false;
+            int val = 0;
+
+            while (!validated)
+            {
+                string s = Console.ReadLine();
+                if (int.TryParse(s, out val))
+                    validated = true;
+            }
+
+            return val;
         }
     }
 }

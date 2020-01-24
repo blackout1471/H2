@@ -29,8 +29,8 @@ namespace SortePer
 		}
 		private int currentPlayerIndex;
 
-		public Player CurrentPlayer => Players[CurrentPlayerIndex];
-		public Player PeekNextPlayer => (CurrentPlayerIndex + 1 >= Players.Count - 1) ? Players[0] : Players[CurrentPlayerIndex + 1];
+		public Player CurrentPlayer => GetPlayerAtIndex(CurrentPlayerIndex);
+		public Player NextPlayer => (CurrentPlayerIndex + 1 >= Players.Count) ? GetPlayerAtIndex(0) : GetPlayerAtIndex(CurrentPlayerIndex + 1);
 
 		public Game(Deck deck, Player[] gamePlayers)
 		{
@@ -38,25 +38,30 @@ namespace SortePer
 			Players = gamePlayers.ToList();
 		}
 
-		public void SetCurrentPlayer(int playerIndex)
+		public void SetCurrentPlayer(int index)
 		{
-			if (playerIndex > Players.Count - 1 || playerIndex < 0)
-				throw new IndexOutOfRangeException("The index of the player does not exist");
+			if (index >= Players.Count)
+				index = 0;
 
-			CurrentPlayerIndex = playerIndex;
+			CurrentPlayerIndex = index;
 		}
 
-		public void ChangeToNextPlayer()
+		public Player GetPlayerAtIndex(int index)
 		{
-			if (CurrentPlayerIndex + 1 > Players.Count -1)
-				SetCurrentPlayer(0);
-			else
-				SetCurrentPlayer(currentPlayerIndex + 1);
+			if (index >= Players.Count)
+				throw new IndexOutOfRangeException("Player do not exist");
+
+			return Players[index];
 		}
+
+		public abstract string StartGameMessage();
+		public abstract string PlayerTakeTurnMessage();
+		public abstract string ChangePlayerMessage();
+		public abstract string GameHasEndedMessage();
 
 		public abstract void StartGame();
 
-		public abstract void PlayerTakeTurn(int indexCard);
+		public abstract void PlayerTakeTurn();
 
 		public abstract void ChangePlayer();
 
