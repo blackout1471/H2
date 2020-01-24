@@ -43,8 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Decks\Card.cs" />
+    <Compile Include="Decks\Deck.cs" />
+    <Compile Include="Games\Game.cs" />
+    <Compile Include="Games\SortePerGame.cs" />
+    <Compile Include="Players\BotPlayer.cs" />
+    <Compile Include="Players\Human.cs" />
+    <Compile Include="Players\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Decks\SortePerDeck.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
