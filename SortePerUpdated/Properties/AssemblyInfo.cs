@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SortePer")]
+[assembly: AssemblyTitle("SortePerUpdated")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SortePer")]
+[assembly: AssemblyProduct("SortePerUpdated")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("7b14ba7c-fdc0-46e7-882f-979bfee8aa33")]
+[assembly: Guid("486a0a35-357c-460a-a396-b3a97ea049a5")]
 
 // Version information for an assembly consists of the following four values:
 //

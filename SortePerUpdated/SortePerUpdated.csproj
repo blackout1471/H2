@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7B14BA7C-FDC0-46E7-882F-979BFEE8AA33}</ProjectGuid>
+    <ProjectGuid>{486A0A35-357C-460A-A396-B3A97EA049A5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SortePer</RootNamespace>
-    <AssemblyName>SortePer</AssemblyName>
+    <RootNamespace>SortePerUpdated</RootNamespace>
+    <AssemblyName>SortePerUpdated</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -45,17 +45,19 @@
   <ItemGroup>
     <Compile Include="Decks\Card.cs" />
     <Compile Include="Decks\Deck.cs" />
-    <Compile Include="Games\Game.cs" />
+    <Compile Include="Decks\Hand.cs" />
+    <Compile Include="Games\CardGame.cs" />
+    <Compile Include="Decks\SortePerDeck.cs" />
     <Compile Include="Games\SortePerGame.cs" />
     <Compile Include="Players\BotPlayer.cs" />
-    <Compile Include="Players\Human.cs" />
     <Compile Include="Players\Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Decks\SortePerDeck.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
