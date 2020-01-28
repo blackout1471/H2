@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>372</x>
+      <y>108</y>
+      <w>198</w>
+      <h>174</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Struct&gt;&gt;
+Card
+--
++ byte Get_Value()
++ void Set_Value(byte value)
++ CardColor Get_Color()
++ void Set_Color(CardColor value)
++ string Get_Name()
++ void Set_Name(string value)
+--
+- byte value
+- CardColor color
+- string name
+--
++ Card(CardColor color, byte value, string name)
++ bool SameCardGenre(Card c2)
++ static bool operator ==(Card c1, Card c2)
++ static bool operator != (Card c1, Card c2)
++ string ToString()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>372</x>
+      <y>0</y>
+      <w>66</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Enumeration&gt;&gt;
+CardColor
+--
+Black
+Red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>612</x>
+      <y>102</y>
+      <w>150</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>/Deck/
+--
++ Stack&lt;Card&gt; Get_Cards()
++ void Set_Cards(Stack&lt;Card&gt; value)
+--
+- Stack&lt;Card&gt; cards
+--
++ Deck()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>348</x>
+      <y>360</y>
+      <w>150</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>Hand
+--
++ List&lt;Card&gt; Get_Cards()
++ void Set_Cards(List&lt;Card&gt; value)
+--
+- List&lt;Card&gt; cards
+--
++ Hand()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>834</x>
+      <y>102</y>
+      <w>150</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>SortePerDeck
+--
++ SortePerDeck()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>774</x>
+      <y>222</y>
+      <w>318</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>/CardGame/
+--
++ List&lt;Player&gt; Get_Player()
+- void Set_Player(List&lt;Player&gt; value)
++ Deck Get_Deck()
+- void Set_Deck(Deck value)
++ Action&lt;string&gt; Get_OutputMethod()
+- void Set_OutputMethod(Action&lt;string&gt; value)
+--
+- Action&lt;string&gt; outputMethod
+- Deck deck
+- List&lt;Player&gt; players
+--
++ CardGame(Action&lt;string&gt; outputmethod, Deck deck, params Player[] players)
+# string GetPlayerNames()
+/# bool HasGameEnded()/
+/# void GameStart()/
+/# void GameEnded()/
+/# void PlayerTurn()/
+# void OutputAMessage(string message)
++ void StartGame()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>792</x>
+      <y>486</y>
+      <w>288</w>
+      <h>222</h>
+    </coordinates>
+    <panel_attributes>/SortePerGame/
+--
++ Player Get_NextPlayer()
++ Player Get_CurrentPlayer()
+- Random Get_Rnd()
+- void Set_Rnd(Random value)
+--
+- Random rnd
+- int currentPlayerIndex
+--
++ SortePerGame(Action&lt;string&gt; outputMethod, params Player[] players)
+- void ShuffleDeck()
+- void SetRandomCurrentPlayer()
+- void ChangeToNextPlayer()
+- void DrawAllCardsFromDeck()
+- bool HasCurrentPlayerLost()
+- int GetCardChoiceFromPlayer()
+- Card DrawCardFromOpponent(int index)
+- bool RemovePlayerIfZeroCards()
+--
+# void GameEnded()
+# void GameStart()
+# bool HasGameEnded()
+# void PlayerTurn()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>312</x>
+      <y>498</y>
+      <w>210</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>Player
+--
++ Func&lt;int&gt; Get_InputMethod()
+# void Set_InputMethod(Func&lt;int&gt; value)
++ string Get_Name()
+- void Set_Name(string value)
++ Hand Get_Hand()
+- void Set_Hand(Hand hand)
+--
+- Func&lt;int&gt; inputMethod
+- string name
+- Hand hand
+--
++ Player(string _name, Func&lt;int&gt; _inputMethod)
++ void AddCardToHand(Card card)
++ Card TakeCardFromDeck(Deck deck)
++ Card TakeCardFromHand(Hand hand, int index)
++ List&lt;Card&gt; GetPlayerPairFromHand(Hand hand)
++ void RemovePairsFromHand()
++ Card RemoveCardFromHand(Card card)
++ Card RemoveCardFromHand(int index)
++ Card[] RemoveCardsFromHand(List&lt;Card&gt; cards)
++ void ShuffleCards(Hand hand)
++ void ShuffleCards(Deck deck)
++ int GetUserInput()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>576</x>
+      <y>678</y>
+      <w>108</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>BotPlayer
+--
+- Random rnd
+--
++ BotPlayer(string name)
+- int GetRandomNumber()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>30</y>
+      <w>186</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes>static Utils
+--
++ static List&lt;T&gt; ShuffleList&lt;T&gt;(List&lt;T&gt; items)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>696</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>948</x>
+      <y>408</y>
+      <w>18</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>126</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>354</x>
+      <y>420</y>
+      <w>18</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>402</x>
+      <y>54</y>
+      <w>18</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>564</x>
+      <y>162</y>
+      <w>126</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black</panel_attributes>
+    <additional_attributes>190.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>480</x>
+      <y>276</y>
+      <w>18</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black</panel_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>738</x>
+      <y>162</y>
+      <w>90</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black</panel_attributes>
+    <additional_attributes>130.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>408</y>
+      <w>270</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+bg=black</panel_attributes>
+    <additional_attributes>430.0;10.0;10.0;220.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>516</x>
+      <y>162</y>
+      <w>204</w>
+      <h>366</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-</panel_attributes>
+    <additional_attributes>320.0;10.0;10.0;590.0</additional_attributes>
+  </element>
+</diagram>

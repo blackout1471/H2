@@ -81,6 +81,11 @@ namespace SortePerUpdated
             return card;
         }
 
+        /// <summary>
+        /// returns all the pairs from the hand given as parameter
+        /// </summary>
+        /// <param name="hand"></param>
+        /// <returns></returns>
         public List<Card> GetPlayerPairFromHand(Hand hand)
         {
             List<Card> cards = new List<Card>();

@@ -23,8 +23,8 @@ namespace SortePerUpdated
 
         /// <summary>
         /// Gets a valid input from a string
-        /// and converts it to a int
-        /// will loop until successfull
+        /// and convert it to a int
+        /// will loop until successfull convertion
         /// </summary>
         /// <returns></returns>
         static int GetNumberFromInput()

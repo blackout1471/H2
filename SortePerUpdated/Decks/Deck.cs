@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SortePerUpdated
 {
-    public class Deck
+    public abstract class Deck
     {
         public Stack<Card> Cards
         {
