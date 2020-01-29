@@ -12,5 +12,10 @@ namespace HelpJacob
         {
             return "" + text + "";
         }
+
+        public void ConvertMessageBodyToHtml(Message m)
+        {
+            m.Body = ConvertPlainTextToHtml(m.Body);
+        }
     }
 }

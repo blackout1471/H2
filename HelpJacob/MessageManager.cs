@@ -62,17 +62,13 @@ namespace HelpJacob
             }
         }
 
-        private void ConvertMessageToHtml(Message m)
-        {
-            m.Body = HtmlConverter.ConvertPlainTextToHtml(m.Body);
-        }
 
         public void SendMessage(Message m, bool isHTML, Carrier carrier)
         {
             SetProtocol(carrier);
 
             if (isHTML)
-                ConvertMessageToHtml(m);
+                HtmlConverter.ConvertMessageBodyToHtml(m);
 
             Protocol.Send(m);
         }
@@ -82,7 +78,7 @@ namespace HelpJacob
             SetProtocol(carrier);
 
             if (isHTML)
-                ConvertMessageToHtml(m);
+                HtmlConverter.ConvertMessageBodyToHtml(m);
 
             foreach (Receiver r in To)
             {
