@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.3.0">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>410</x>
+      <y>160</y>
+      <w>590</w>
+      <h>330</h>
+    </coordinates>
+    <panel_attributes>/CreditCard/
+--
+- string[] allowedPrefixes
+- string prefix
+- string cardNumber
+- byte amountOfDigits
+- BankAccount account
+- string cardHolderName
+- Date expiryDate
+--
+/# bool AllowedToGetCard(int age)/
+
+
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>

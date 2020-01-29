@@ -14,7 +14,7 @@ namespace Geometri
             {
                 new Parralelogram(5, 3, 30),
                 new Square(20, 20),
-                new Trapez(10, 7, 8, 7),
+                new Trapez(10, 9, 8, 9),
                 new Triangle(5, 3, 10)
             };
 
