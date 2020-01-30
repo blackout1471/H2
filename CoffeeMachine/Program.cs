@@ -13,10 +13,10 @@ namespace CoffeeMachine
             CoffeeMachine a = new DripCoffeMachine();
             a.ChangeFilter(new Filter(100, 3));
             a.ChangeProductContainer(new Container(2));
-            a.AddCoffeeIngredient(200);
+            a.AddIngredient(new The(), 200);
             a.AddWater(1);
             a.TurnOn();
-            a.BrewCoffee();
+            a.Brew();
             a.TurnOff();
             Container cup = a.TakeProduct();
 

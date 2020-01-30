@@ -4,10 +4,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>260</x>
-      <y>270</y>
+      <x>440</x>
+      <y>240</y>
       <w>400</w>
-      <h>180</h>
+      <h>200</h>
     </coordinates>
     <panel_attributes>/CoffeeMachine/
 --
@@ -18,17 +18,17 @@
 + void ChangeFilter(Filter filter)
 + Container TakeProduct()
 + void ChangeProductContainer(Container productContainer)
-/+ void AddCoffeIngredient(float gram)/
+/+ void AddIngredient(Ingredient ingredient, float gram)/
 /+ void AddWater(float liter)/
-/+ void BrewCoffee()/
+/+ void Brew()/
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>80</y>
+      <x>470</x>
+      <y>50</y>
       <w>220</w>
       <h>110</h>
     </coordinates>
@@ -45,8 +45,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>410</x>
-      <y>180</y>
+      <x>590</x>
+      <y>150</y>
       <w>30</w>
       <h>110</h>
     </coordinates>
@@ -56,8 +56,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>760</x>
-      <y>270</y>
+      <x>940</x>
+      <y>240</y>
       <w>180</w>
       <h>110</h>
     </coordinates>
@@ -73,8 +73,8 @@ Filter
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>90</x>
-      <y>550</y>
+      <x>270</x>
+      <y>520</y>
       <w>220</w>
       <h>110</h>
     </coordinates>
@@ -82,6 +82,7 @@ Filter
 --
 - float maxCapacity {+get; -set}
 - float currentCapacity {+get; +set}
+- Ingredient product {+get; +set}
 --
 + Container(float maxCapacity)</panel_attributes>
     <additional_attributes/>
@@ -89,8 +90,8 @@ Filter
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>650</x>
-      <y>320</y>
+      <x>830</x>
+      <y>290</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -100,15 +101,15 @@ Filter
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>560</y>
+      <x>590</x>
+      <y>530</y>
       <w>270</w>
       <h>80</h>
     </coordinates>
     <panel_attributes>DripCoffeeMachine
 --
 - Container waterContainer {+get; -set}
-- Container coffeeContainer {+get; -set}
+- Container ingredientContainer {+get; -set}
 --
 + DripCoffeeMachine()</panel_attributes>
     <additional_attributes/>
@@ -116,19 +117,19 @@ Filter
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>430</x>
-      <y>440</y>
+      <x>610</x>
+      <y>430</y>
       <w>30</w>
-      <h>140</h>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;120.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>300</x>
-      <y>590</y>
+      <x>480</x>
+      <y>560</y>
       <w>130</w>
       <h>30</h>
     </coordinates>
@@ -138,12 +139,86 @@ Filter
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>280</x>
-      <y>440</y>
+      <x>460</x>
+      <y>430</y>
       <w>30</w>
-      <h>130</h>
+      <h>110</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>170</x>
+      <y>190</y>
+      <w>180</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>/Ingredient/
+--
+- string name {+get; -set}
+--
++ Ingredient(string name)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>340</y>
+      <w>90</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Coffee
+--
++ Coffee()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>290</x>
+      <y>340</y>
+      <w>90</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>The
+--
++ The()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>260</x>
+      <y>260</y>
+      <w>100</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>160</x>
+      <y>260</y>
+      <w>100</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>80.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>340</x>
+      <y>230</y>
+      <w>120</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;100.0;50.0</additional_attributes>
   </element>
 </diagram>

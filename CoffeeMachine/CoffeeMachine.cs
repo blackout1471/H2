@@ -55,8 +55,8 @@ namespace CoffeeMachine
             return product;
         }
 
-        public abstract void AddCoffeeIngredient(float gram);
+        public abstract void AddIngredient(Ingredient ingredient, float gram);
         public abstract void AddWater(float liter);
-        public abstract void BrewCoffee();
+        public abstract void Brew();
     }
 }

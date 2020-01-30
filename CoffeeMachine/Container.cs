@@ -34,8 +34,22 @@ namespace CoffeeMachine
             }
         }
 
+        public Ingredient Ingredient
+        {
+            get
+            {
+                return ingredient;
+            }
+
+            set
+            {
+                ingredient = value;
+            }
+        }
+
         private float maxCapacity;
         private float currentCapacity;
+        private Ingredient ingredient;
 
         public Container(float maxCapacity)
         {
