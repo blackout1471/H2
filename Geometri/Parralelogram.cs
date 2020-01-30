@@ -33,6 +33,10 @@ namespace Geometri
             return (SideA * SideB) * (float)Math.Sin(AngleToRadian(Angle));
         }
 
+        /// <summary>
+        /// Get the Geometri variables in string format
+        /// </summary>
+        /// <returns></returns>
         public override string GetInformation()
         {
             string s = base.GetInformation();

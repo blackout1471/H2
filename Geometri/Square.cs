@@ -45,6 +45,10 @@ namespace Geometri
             return SideA * 2;
         }
 
+        /// <summary>
+        /// Get the Geometri variables in string format
+        /// </summary>
+        /// <returns></returns>
         public override string GetInformation()
         {
             return String.Format("Side A: {0}\nSideB {1}", SideA, SideB);

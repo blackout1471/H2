@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CoffeeMachine
 {
+    /// <summary>
+    /// A container which will hold a beverage/ingredient
+    /// </summary>
     public class Container
     {
         public float MaxCapacity

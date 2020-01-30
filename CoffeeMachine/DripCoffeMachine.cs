@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace CoffeeMachine
 {
+
     public class DripCoffeMachine : CoffeeMachine
     {
         public Container WaterContainer
@@ -64,6 +65,9 @@ namespace CoffeeMachine
 
         public override void Brew()
         {
+            if (!TurnedOn)
+                throw new ArgumentException("The machine is not turned on");
+
             ProductContainer.CurrentCapacity += GetAmountFromBrew();
             ProductContainer.Ingredient = IngredientContainer.Ingredient;
             WaterContainer.CurrentCapacity = 0;

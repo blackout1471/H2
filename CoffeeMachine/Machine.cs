@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CoffeeMachine
 {
+    /// <summary>
+    /// An electronic machine which can get turned on or off
+    /// </summary>
     public abstract class Machine
     {
         public bool TurnedOn

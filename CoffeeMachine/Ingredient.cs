@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace CoffeeMachine
 {
+    /// <summary>
+    /// An ingredient is used to create food/beverages
+    /// </summary>
     public abstract class Ingredient
     {
         public string Name
