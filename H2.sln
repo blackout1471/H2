@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeMachine", "CoffeeMach
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BirdsFlyingAround", "BirdsFlyingAround\BirdsFlyingAround.csproj", "{F47F5DC5-5D40-4738-A47E-6309CF17F12C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpLone", "HelpLone\HelpLone.csproj", "{437821DA-1A9F-4CC5-909A-56AD3AB868C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebsiteRequester", "WebsiteRequester\WebsiteRequester.csproj", "{AB40D13E-83F7-4E7E-A882-2732ED81D3C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{F47F5DC5-5D40-4738-A47E-6309CF17F12C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F47F5DC5-5D40-4738-A47E-6309CF17F12C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F47F5DC5-5D40-4738-A47E-6309CF17F12C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{437821DA-1A9F-4CC5-909A-56AD3AB868C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{437821DA-1A9F-4CC5-909A-56AD3AB868C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{437821DA-1A9F-4CC5-909A-56AD3AB868C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{437821DA-1A9F-4CC5-909A-56AD3AB868C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB40D13E-83F7-4E7E-A882-2732ED81D3C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB40D13E-83F7-4E7E-A882-2732ED81D3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB40D13E-83F7-4E7E-A882-2732ED81D3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB40D13E-83F7-4E7E-A882-2732ED81D3C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
