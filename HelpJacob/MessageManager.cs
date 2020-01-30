@@ -62,7 +62,6 @@ namespace HelpJacob
             }
         }
 
-
         public void SendMessage(Message m, bool isHTML, Carrier carrier)
         {
             SetProtocol(carrier);

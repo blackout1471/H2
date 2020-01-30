@@ -1,27 +1,66 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>160</y>
-      <w>590</w>
-      <h>330</h>
+      <x>464</x>
+      <y>176</y>
+      <w>280</w>
+      <h>368</h>
     </coordinates>
     <panel_attributes>/CreditCard/
 --
 - string[] allowedPrefixes
 - string prefix
-- string cardNumber
 - byte amountOfDigits
+- string cardNumber
 - BankAccount account
 - string cardHolderName
 - Date expiryDate
 --
++ string[] Get_AllowedPrefixes()
+# void Set_AllowedPrefixes(string[] value)
++ string Get_Prefix()
+# void Set_Prefix(string value)
++ byte Get_AmountOfDigits()
+# void Set_AmountOfDigits(byte value)
++ string Get_CardNumber()
+- void Set_CardNumber(string value)
++ BankAccount Get_Account()
+- void Set_Account(BankAccount value)
++ string Get_CardHolderName()
+- void Set_CardHolderName(string value)
++ Date Get_ExpiryDate()
+- void Set_ExpiryDate(Date value)
+--
++ CreditCard()
 /# bool AllowedToGetCard(int age)/
 
 
+
+
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>96</x>
+      <y>48</y>
+      <w>216</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>BankAccount
+--
+- string registerNumber
+- int amountOfDigits
+- string accountNumber
+--
++ BankAccount()
++ string Get_AccountNumber
+- void Set_AccountNumber(string value)
 
 
 

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Geometri", "Geometri\Geomet
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelpJacob", "HelpJacob\HelpJacob.csproj", "{CCA714F9-6BE7-4CDE-8707-3CD905E13F89}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoffeeMachine", "CoffeeMachine\CoffeeMachine.csproj", "{4A600787-BF42-48EF-98B6-CBF9CCC99B8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{CCA714F9-6BE7-4CDE-8707-3CD905E13F89}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCA714F9-6BE7-4CDE-8707-3CD905E13F89}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCA714F9-6BE7-4CDE-8707-3CD905E13F89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A600787-BF42-48EF-98B6-CBF9CCC99B8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A600787-BF42-48EF-98B6-CBF9CCC99B8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A600787-BF42-48EF-98B6-CBF9CCC99B8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A600787-BF42-48EF-98B6-CBF9CCC99B8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
