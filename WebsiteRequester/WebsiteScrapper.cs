@@ -10,6 +10,11 @@ namespace WebsiteRequester
 {
     public class WebsiteScrapper : ContentRequest
     {
+        /// <summary>
+        /// Read the body of a website
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public override string GetContent(string path)
         {
             string content;

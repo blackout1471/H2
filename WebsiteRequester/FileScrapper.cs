@@ -9,6 +9,11 @@ namespace WebsiteRequester
 {
     public class FileScrapper : ContentRequest
     {
+        /// <summary>
+        /// Read from a file
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         public override string GetContent(string path)
         {
             string content;

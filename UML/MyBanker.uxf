@@ -4,38 +4,24 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>464</x>
-      <y>176</y>
-      <w>280</w>
-      <h>368</h>
+      <x>488</x>
+      <y>168</y>
+      <w>688</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>/CreditCard/
 --
-- string[] allowedPrefixes
-- string prefix
-- byte amountOfDigits
-- string cardNumber
-- BankAccount account
-- string cardHolderName
-- Date expiryDate
+- string prefix {+get; -set}
+- string cardNumber {+get; -set}
+- BankAccount bankAccount {+get; -set}
+- string cardHolderName {+get; -set}
+- DateTime expiryDate {+get; -set}
 --
-+ string[] Get_AllowedPrefixes()
-# void Set_AllowedPrefixes(string[] value)
-+ string Get_Prefix()
-# void Set_Prefix(string value)
-+ byte Get_AmountOfDigits()
-# void Set_AmountOfDigits(byte value)
-+ string Get_CardNumber()
-- void Set_CardNumber(string value)
-+ BankAccount Get_Account()
-- void Set_Account(BankAccount value)
-+ string Get_CardHolderName()
-- void Set_CardHolderName(string value)
-+ Date Get_ExpiryDate()
-- void Set_ExpiryDate(Date value)
---
-+ CreditCard()
++ CreditCard(int amountOfDigits, string[] allowedPrefixes, string cardHolderName, int age, DateTime expiryDate, BankAccount account)
++ void Pay(float amount)
++ float DrawMoney(float amount)
 /# bool AllowedToGetCard(int age)/
+- void GenerateCardNumber(int amountOfDigits)
 
 
 
@@ -47,24 +33,273 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>96</x>
-      <y>48</y>
-      <w>216</w>
-      <h>112</h>
+      <x>152</x>
+      <y>40</y>
+      <w>368</w>
+      <h>96</h>
     </coordinates>
-    <panel_attributes>BankAccount
+    <panel_attributes>/BankAccount/
 --
-- string registerNumber
-- int amountOfDigits
-- string accountNumber
+- string name {+get; -set} 
+- string registerNumber {+get; -set}
+- string accountNumber {+get; -set}
 --
-+ BankAccount()
-+ string Get_AccountNumber
-- void Set_AccountNumber(string value)
-
++ BankAccount(string name, string registerNumber, int amountOfDigits)
+- void GenerateAccountNumber(int amountOfDigits)
 
 
 </panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>656</x>
+      <y>544</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IUseOnline
+--
++ void PayOnline(float amount)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>856</x>
+      <y>544</y>
+      <w>240</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IUseInternational
+--
++ void PayInternational(float amount)
++ void DrawMoneyInternational(float amount)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1160</x>
+      <y>376</y>
+      <w>360</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>MaestroCard
+--
++ MaestroCard(string carHolderName, int age, BankAccount account)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>768</x>
+      <y>384</y>
+      <w>376</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>VisaElectronCard
+--
++ VisaElectronCard(string carHolderName, int age, BankAccount account)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>24</x>
+      <y>384</y>
+      <w>376</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>VisaDankortCard
+--
+- float maxDailyLimit {+get; -set}
+- float currentDailyUsed {+get; -set}
+--
++ VisaDankortCard(string carHolderName, int age, BankAccount account)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>408</x>
+      <y>352</y>
+      <w>344</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>MasterCard
+--
+- float maxDailyLimit {+get; -set}
+- float currentDailyUsed {+get; -set}
+- float maxMonthlyLimit {+get; -set}
+- float currentMonthlyUsed {+get; -set}
+--
++ MasterCard(string carHolderName, int age, BankAccount account)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>496</x>
+      <y>128</y>
+      <w>24</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1160</x>
+      <y>320</y>
+      <w>24</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>856</x>
+      <y>320</y>
+      <w>24</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>192</x>
+      <y>240</y>
+      <w>312</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>370.0;10.0;10.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>552</x>
+      <y>320</y>
+      <w>24</w>
+      <h>48</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>440</y>
+      <w>24</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>728</x>
+      <y>440</y>
+      <w>24</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1088</x>
+      <y>432</y>
+      <w>88</w>
+      <h>128</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;140.0;90.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>464</x>
+      <y>544</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IMaxUsePerMonth
+--
++ bool HasMonthlyLimitOccured()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>280</x>
+      <y>544</y>
+      <w>168</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Interface&gt;&gt;
+IMaxUseDaily
+--
++ bool HasDailyLimitOccured()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>448</y>
+      <w>24</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>272</x>
+      <y>440</y>
+      <w>24</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>464</x>
+      <y>440</y>
+      <w>24</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>440</y>
+      <w>24</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;130.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>

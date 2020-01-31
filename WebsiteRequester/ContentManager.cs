@@ -45,6 +45,15 @@ namespace WebsiteRequester
 
             }
         }
+
+        /// <summary>
+        /// Get the content from a target
+        /// ex a file path
+        /// or a website uri
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public string GetContent(string path, ContentRequestType type)
         {
             SetRequestType(type);
