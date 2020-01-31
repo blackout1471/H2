@@ -42,6 +42,7 @@ namespace MyBanker
 
         /// <summary>
         /// The Account Number for the bank account
+        /// it is build from the method GenerateAccountNumber
         /// </summary>
         public string AccountNumber
         {
