@@ -23,6 +23,10 @@ namespace MyBanker
                 name = value;
             }
         }
+
+        /// <summary>
+        /// The Register Number for the Bank account
+        /// </summary>
         public string RegisterNumber
         {
             get
@@ -35,6 +39,10 @@ namespace MyBanker
                 registerNumber = value;
             }
         }
+
+        /// <summary>
+        /// The Account Number for the bank account
+        /// </summary>
         public string AccountNumber
         {
             get

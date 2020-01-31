@@ -11,6 +11,9 @@ namespace MyBanker
     /// </summary>
     public class NordeaBankAccount : BankAccount
     {
+        /// <summary>
+        /// Creates a nordea bank account
+        /// </summary>
         public NordeaBankAccount() : base("Nordea", "3520", 14)
         {
         }

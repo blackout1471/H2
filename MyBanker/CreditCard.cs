@@ -8,6 +8,10 @@ namespace MyBanker
 {
     public abstract class CreditCard
     {
+        /// <summary>
+        /// The Prefix of the credit card
+        /// Determines the first numbers in the cardnumber
+        /// </summary>
         public string Prefix
         {
             get
@@ -20,6 +24,10 @@ namespace MyBanker
                 prefix = value;
             }
         }
+
+        /// <summary>
+        /// The card number of the credit cards
+        /// </summary>
         public string CardNumber
         {
             get
@@ -32,6 +40,10 @@ namespace MyBanker
                 cardNumber = value;
             }
         }
+
+        /// <summary>
+        /// The persons name the card belongs to
+        /// </summary>
         public string CardHolderName
         {
             get
@@ -44,6 +56,10 @@ namespace MyBanker
                 cardHolderName = value;
             }
         }
+
+        /// <summary>
+        /// The expiry date of the credit card
+        /// </summary>
         public DateTime ExpiryDate
         {
             get
@@ -56,6 +72,10 @@ namespace MyBanker
                 expiryDate = value;
             }
         }
+
+        /// <summary>
+        /// The bank account the card can access
+        /// </summary>
         public BankAccount BankAccount
         {
             get
@@ -100,11 +120,20 @@ namespace MyBanker
             BankAccount = account;
         }
 
+        /// <summary>
+        /// The method to pay for a item
+        /// the money is withdrawn from the bank account
+        /// </summary>
+        /// <param name="amount"></param>
         public virtual void Pay(float amount)
         {
             // Implement base Pay method
         }
 
+        /// <summary>
+        /// The method to withdraw money from the bank account
+        /// </summary>
+        /// <param name="amount"></param>
         public virtual void DrawMoney(float amount)
         {
             // Implement base Draw method
@@ -135,6 +164,10 @@ namespace MyBanker
             }
         }
 
+        /// <summary>
+        /// Returns the card as a string
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return $"CardHolder: {CardHolderName} CardNumber: {CardNumber} Expiry Date: {ExpiryDate} Account Number: {BankAccount.AccountNumber}";
