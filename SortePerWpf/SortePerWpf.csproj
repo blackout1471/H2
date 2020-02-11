@@ -60,9 +60,7 @@
     <Compile Include="Model\DeckFactory.cs" />
     <Compile Include="Model\Decks\Deck.cs" />
     <Compile Include="Model\Players\Player.cs" />
-    <Compile Include="UserControls\PlayerControl.xaml.cs">
-      <DependentUpon>PlayerControl.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="UserControls\PlayerHandControl.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\NavigationController.cs" />
     <Compile Include="ViewModel\SortePerGameViewModel.cs" />
@@ -85,10 +83,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="UserControls\PlayerControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\SortePerGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -153,5 +147,6 @@
     <Resource Include="Assets\squid.png" />
     <Resource Include="Assets\whale.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

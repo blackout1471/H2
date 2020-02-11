@@ -21,17 +21,22 @@
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
-        <usercontrols:PlayerControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" PlayerName="Hej"
+        <!--<usercontrols:PlayerControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" PlayerName="Hej"
                                     x:Name="CurrentPlayer">
 
-        </usercontrols:PlayerControl>
+        </usercontrols:PlayerControl>-->
+
+        <usercontrols:PlayerHandControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CurrentPlayer2" RenderTransformOrigin="0.5, 0.5">
+            <usercontrols:PlayerHandControl.RenderTransform>
+                <RotateTransform Angle="180" />
+            </usercontrols:PlayerHandControl.RenderTransform>
+        </usercontrols:PlayerHandControl>
 
         <Button Grid.Row="1" Grid.Column="1" Content="End Turn">
 
         </Button>
 
-        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Background="Green">
-
-        </StackPanel>
+        <usercontrols:PlayerHandControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CurrentPlayer">
+        </usercontrols:PlayerHandControl>
     </Grid>
 </UserControl>
