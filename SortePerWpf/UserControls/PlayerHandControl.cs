@@ -74,8 +74,7 @@ namespace SortePerWpf.UserControls
 		public static readonly DependencyProperty ImageCollectionProperty =
 			DependencyProperty.Register("ImageCollection", typeof(List<Image>), typeof(PlayerHandControl), new PropertyMetadata(null, new PropertyChangedCallback(ImageCollectionChanged)));
 
-        #endregion
-
+       
         /// <summary>
         /// Event handler for when imagecollection is changed
         /// </summary>
@@ -91,6 +90,8 @@ namespace SortePerWpf.UserControls
 				c.RenderUpdate();
 			}			
 		}
+
+		#endregion
 
 		/// <summary>
 		/// Construct the player hand control

@@ -55,10 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\SortePerCardConverter.cs" />
     <Compile Include="Model\Cards\Card.cs" />
     <Compile Include="Model\Cards\SortePerCard.cs" />
     <Compile Include="Model\DeckFactory.cs" />
     <Compile Include="Model\Decks\Deck.cs" />
+    <Compile Include="Model\Game\GameBase.cs" />
+    <Compile Include="Model\Game\SortePerGame.cs" />
     <Compile Include="Model\Players\Player.cs" />
     <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="UserControls\PlayerHandControl.cs" />

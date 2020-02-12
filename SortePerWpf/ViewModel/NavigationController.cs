@@ -27,6 +27,9 @@ namespace SortePerWpf.ViewModel
 			CurrentView = new SortePerGameViewModel();
 		}
 
+		/// <summary>
+		/// The current view in the application
+		/// </summary>
 		public BaseViewModel CurrentView
 		{
 			get { return currentView; }
