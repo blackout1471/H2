@@ -148,6 +148,8 @@
     <Resource Include="Assets\squid.png" />
     <Resource Include="Assets\whale.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\SortePerCards\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
