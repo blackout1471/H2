@@ -1,45 +1,96 @@
-﻿using System;
+﻿using SortePerWpf.Model;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace SortePerWpf.UserControls
 {
     public class PlayerHandControl : Canvas
     {
-		// Event for when hovering over image
-		public delegate void HoverImageEventHandler(object sender, Image image);
-		public event HoverImageEventHandler HoverImageEvent;
 
-		// Event for when exiting hovering on image
-		public delegate void UnHoverImageEventHandler(object sender, Image image);
-		public event UnHoverImageEventHandler UnHoverImageEvent;
+        #region Dependency Properties
 
-		// Event for clicking an image
-		public delegate void ClickedImageEventHandler(object sender, Image image);
-		public event ClickedImageEventHandler ClickedImageEvent;
-
-		/// <summary>
-		/// The images which will be displayed as a hand
-		/// </summary>
-		public List<Image> CardImages
+        /// <summary>
+        /// The on hover on an image
+        /// can be bound
+        /// </summary>
+        public ICommand HoverImageCommand
 		{
-			get { return cardImages; }
-			set 
-			{
-				if (cardImages == value)
-					return;
-
-				cardImages = value;
-				UpdateEventsForImages();
-				RenderUpdate();
-			}
+			get { return (ICommand)GetValue(HoverImageCommandProperty); }
+			set { SetValue(HoverImageCommandProperty, value); }
 		}
 
-		private List<Image> cardImages;
+		// Using a DependencyProperty as the backing store for HoverImageCommand.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty HoverImageCommandProperty =
+			DependencyProperty.Register("HoverImageCommand", typeof(ICommand), typeof(PlayerHandControl), 
+				new PropertyMetadata(null));
+
+		/// <summary>
+		/// Command for when clicking an image
+		/// </summary>
+		public ICommand ClickImageCommand
+		{
+			get { return (ICommand)GetValue(ClickImageCommandProperty); }
+			set { SetValue(ClickImageCommandProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for ClickImageCommand.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ClickImageCommandProperty =
+			DependencyProperty.Register("ClickImageCommand", typeof(ICommand), typeof(PlayerHandControl), new PropertyMetadata(null));
+
+
+
+		/// <summary>
+		/// The un hover command can be bound
+		/// </summary>
+		public ICommand UnHoverImageCommand
+		{
+			get { return (ICommand)GetValue(UnHoverImageCommandProperty); }
+			set { SetValue(UnHoverImageCommandProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for UnHoverImageCommand.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty UnHoverImageCommandProperty =
+			DependencyProperty.Register("UnHoverImageCommand", typeof(ICommand), typeof(PlayerHandControl), new PropertyMetadata(null));
+
+
+
+		/// <summary>
+		/// The images used to render
+		/// </summary>
+		public List<Image> ImageCollection
+		{
+			get { return (List<Image>)GetValue(ImageCollectionProperty); }
+			set { SetValue(ImageCollectionProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for ImageCollection.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty ImageCollectionProperty =
+			DependencyProperty.Register("ImageCollection", typeof(List<Image>), typeof(PlayerHandControl), new PropertyMetadata(null, new PropertyChangedCallback(ImageCollectionChanged)));
+
+        #endregion
+
+        /// <summary>
+        /// Event handler for when imagecollection is changed
+        /// </summary>
+        /// <param name="o"></param>
+        /// <param name="e"></param>
+        private static void ImageCollectionChanged(DependencyObject o, DependencyPropertyChangedEventArgs e)
+		{
+			var c = o as PlayerHandControl;
+
+			if (c != null)
+			{
+				c.UpdateEventsForImages();
+				c.RenderUpdate();
+			}			
+		}
 
 		/// <summary>
 		/// Construct the player hand control
@@ -76,11 +127,11 @@ namespace SortePerWpf.UserControls
 		/// </summary>
 		private void UpdateEventsForImages()
 		{
-			for (int i = 0; i < CardImages.Count; i++)
+			for (int i = 0; i < ImageCollection.Count; i++)
 			{
-				CardImages[i].MouseEnter += OnImageMouseEnter;
-				CardImages[i].MouseLeave += OnImageMouseExit;
-				CardImages[i].MouseLeftButtonDown += OnImageMouseClicked;
+				ImageCollection[i].MouseEnter += OnImageMouseEnter;
+				ImageCollection[i].MouseLeave += OnImageMouseExit;
+				ImageCollection[i].MouseLeftButtonDown += OnImageMouseClicked;
 			}
 		}
 
@@ -90,8 +141,10 @@ namespace SortePerWpf.UserControls
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void OnImageMouseClicked(object sender, System.Windows.Input.MouseEventArgs e)
-		{
-			ClickedImageEvent?.Invoke(this, (Image)e.Source);
+		{	
+			if (ClickImageCommand != null)
+				if (ClickImageCommand.CanExecute(sender))
+					ClickImageCommand.Execute(sender);
 		}
 
 		/// <summary>
@@ -101,7 +154,9 @@ namespace SortePerWpf.UserControls
 		/// <param name="e"></param>
 		private void OnImageMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
 		{
-			HoverImageEvent?.Invoke(this, (Image)e.Source);
+			if (HoverImageCommand != null)
+				if (HoverImageCommand.CanExecute(sender))
+					HoverImageCommand.Execute(sender);
 		}
 
 		/// <summary>
@@ -111,7 +166,9 @@ namespace SortePerWpf.UserControls
 		/// <param name="e"></param>
 		private void OnImageMouseExit(object sender, System.Windows.Input.MouseEventArgs e)
 		{
-			UnHoverImageEvent?.Invoke(this, (Image)e.Source);
+			if (UnHoverImageCommand != null)
+				if (UnHoverImageCommand.CanExecute(sender))
+					UnHoverImageCommand.Execute(sender);
 		}
 
 		/// <summary>
@@ -133,10 +190,10 @@ namespace SortePerWpf.UserControls
         /// </summary>
         private void SetImagesSize()
 		{
-			for (int i = 0; i < CardImages.Count; i++)
+			for (int i = 0; i < ImageCollection.Count; i++)
 			{
-				CardImages[i].Height = ActualHeight * 0.90;
-				CardImages[i].Width = CardImages[i].Height * 0.80;
+				ImageCollection[i].Height = ActualHeight * 0.90;
+				ImageCollection[i].Width = ImageCollection[i].Height * 0.80;
 			}
 		}
 
@@ -145,9 +202,9 @@ namespace SortePerWpf.UserControls
 		/// </summary>
 		private void AddImagesToCanvas(double offset)
 		{
-			for (int i = 0; i < CardImages.Count; i++)
+			for (int i = 0; i < ImageCollection.Count; i++)
 			{
-				Image curImage = CardImages[i];
+				Image curImage = ImageCollection[i];
 
 				double curPosX = i * curImage.Width;
 				double curOffsetX = i * offset;
@@ -165,9 +222,9 @@ namespace SortePerWpf.UserControls
 		/// <returns></returns>
 		private double GetCardsXOffset()
 		{
-			double totalCardsWidth = CardImages[0].Width * CardImages.Count;
+			double totalCardsWidth = ImageCollection[0].Width * ImageCollection.Count;
 
-			return (ActualWidth >= totalCardsWidth) ? 0 : ((totalCardsWidth - ActualWidth) / (CardImages.Count - 1));
+			return (ActualWidth >= totalCardsWidth) ? 0 : ((totalCardsWidth - ActualWidth) / (ImageCollection.Count - 1));
 		}
 
 		/// <summary>
@@ -178,7 +235,7 @@ namespace SortePerWpf.UserControls
 			Children.Clear();
 
 			// Don't render if there is nothing to render.
-			if (CardImages == null || CardImages.Count == 0)
+			if (ImageCollection == null || ImageCollection.Count == 0)
 				return;
 
 			// Set Images size

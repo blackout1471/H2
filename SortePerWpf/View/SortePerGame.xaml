@@ -7,7 +7,8 @@
              xmlns:usercontrols="clr-namespace:SortePerWpf.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             Background="White">
+             Background="White"
+             x:Name="Control">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="4*"/>
@@ -21,12 +22,10 @@
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
-        <!--<usercontrols:PlayerControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" PlayerName="Hej"
-                                    x:Name="CurrentPlayer">
-
-        </usercontrols:PlayerControl>-->
-
-        <usercontrols:PlayerHandControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CurrentPlayer2" RenderTransformOrigin="0.5, 0.5">
+        <usercontrols:PlayerHandControl Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CurrentPlayer2" RenderTransformOrigin="0.5, 0.5"
+            HoverImageCommand="{Binding HoverImageCardCommand, ElementName=Control}"
+            UnHoverImageCommand="{Binding UnHoverImageCardCommand, ElementName=Control}"
+            ImageCollection="{Binding Images2, ElementName=Control}">
             <usercontrols:PlayerHandControl.RenderTransform>
                 <RotateTransform Angle="180" />
             </usercontrols:PlayerHandControl.RenderTransform>
@@ -36,7 +35,10 @@
 
         </Button>
 
-        <usercontrols:PlayerHandControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CurrentPlayer">
+        <usercontrols:PlayerHandControl Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CurrentPlayerControl"
+            HoverImageCommand="{Binding HoverImageCardCommand, ElementName=Control}"
+            UnHoverImageCommand="{Binding UnHoverImageCardCommand, ElementName=Control}"
+            ImageCollection="{Binding Images, ElementName=Control}">
         </usercontrols:PlayerHandControl>
     </Grid>
 </UserControl>

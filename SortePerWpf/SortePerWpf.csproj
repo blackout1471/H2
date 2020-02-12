@@ -60,6 +60,7 @@
     <Compile Include="Model\DeckFactory.cs" />
     <Compile Include="Model\Decks\Deck.cs" />
     <Compile Include="Model\Players\Player.cs" />
+    <Compile Include="Model\RelayCommand.cs" />
     <Compile Include="UserControls\PlayerHandControl.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\NavigationController.cs" />
@@ -67,10 +68,6 @@
     <Compile Include="View\SortePerGame.xaml.cs">
       <DependentUpon>SortePerGame.xaml</DependentUpon>
     </Compile>
-    <Page Include="GamePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
