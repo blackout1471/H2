@@ -12,7 +12,7 @@ namespace SortePerWpf.Model.Decks
     public class Deck : Queue<Card>
     {
         /// <summary>
-        /// A random class used for shuffle etc.
+        /// A random class object used for shuffle etc.
         /// </summary>
         private Random Random
         {

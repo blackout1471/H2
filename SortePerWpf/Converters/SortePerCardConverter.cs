@@ -12,44 +12,71 @@ using SortePerWpf.Model.Players;
 
 namespace SortePerWpf.Converters
 {
+
+    /// <summary>
+    /// Converts a card or image to the opposite
+    /// based upon sorte per game
+    /// if parameter is set to true it will inverse operation
+    /// </summary>
     public class SortePerCardConverter : IValueConverter
     {
+        /// <summary>
+        /// Convert from a card to an image
+        /// if parameter is true operation will be inversed
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Player player = (Player)value;
+            bool par = (!(parameter is bool)) ? false : (bool)parameter;
 
-            if (player == null)
-                return new List<Image>();
+            if (par)
+                return ConvertBack(value, targetType, false, culture);
 
+            Card c = (Card)value;
 
-            List<Image> images = new List<Image>();
+            if (c == null)
+                return null;
 
-            for (int i = 0; i < player.Count; i++)
-            {
-                images.Add(ConvertCardToImage(player[i]));
-            }
+            Image img = ConvertCardToImage(c);
 
-            return images;
+            return img;
         }
 
+        /// <summary>
+        /// Convert from an image to a card
+        /// If the parameter is true the operation will be inversed
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="targetType"></param>
+        /// <param name="parameter"></param>
+        /// <param name="culture"></param>
+        /// <returns></returns>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            List<Image> images = (List<Image>)value;
+            bool par = (!(parameter is bool)) ? false : (bool)parameter;
 
-            if (images == null)
-                return new List<Image>();
+            if (par)
+                return ConvertBack(value, targetType, false, culture);
 
+            Image i = (Image)value;
 
-            Player player = new Player("Figure Out Later");
+            if (i == null)
+                return null;
 
-            for (int i = 0; i < images.Count; i++)
-            {
-                player.Add(ConvertImageToCard(images[i]));
-            }
+            Card c = ConvertImageToCard(i);
 
-            return images;
+            return c;
         }
 
+        /// <summary>
+        /// Convert from a card to an image
+        /// </summary>
+        /// <param name="card"></param>
+        /// <returns></returns>
         private Image ConvertCardToImage(Card card)
         {
             Image img = new Image();
@@ -100,6 +127,11 @@ namespace SortePerWpf.Converters
             return img;
         }
 
+        /// <summary>
+        /// Convert from an image to a card
+        /// </summary>
+        /// <param name="image"></param>
+        /// <returns></returns>
         private Card ConvertImageToCard(Image image)
         {
             Card card = new Card(0);

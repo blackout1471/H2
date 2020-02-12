@@ -11,6 +11,17 @@ using System.Windows.Input;
 
 namespace SortePerWpf.UserControls
 {
+	/// <summary>
+	/// Class for image event arguments
+	/// Position in the stack
+	/// and the image object
+	/// </summary>
+	public class ImageEventArgs : EventArgs
+	{
+		public int Position;
+		public Image Image;
+	}
+
     public class PlayerHandControl : Canvas
     {
 
@@ -138,38 +149,47 @@ namespace SortePerWpf.UserControls
 
 		/// <summary>
 		/// Called when the mouse is clicked on an image
+		/// It will send The Image Event Args with it
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void OnImageMouseClicked(object sender, System.Windows.Input.MouseEventArgs e)
-		{	
+		{
+			int pos = ImageCollection.FindIndex((x) => x == (Image)sender);
+
 			if (ClickImageCommand != null)
 				if (ClickImageCommand.CanExecute(sender))
-					ClickImageCommand.Execute(sender);
+					ClickImageCommand.Execute(new ImageEventArgs() { Position = pos, Image = (Image)sender});
 		}
 
 		/// <summary>
 		/// Called when the mouse enter a image
+		/// It Will send Image Event Args with it
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void OnImageMouseEnter(object sender, System.Windows.Input.MouseEventArgs e)
 		{
+			int pos = ImageCollection.FindIndex((x) => x == (Image)sender);
+
 			if (HoverImageCommand != null)
 				if (HoverImageCommand.CanExecute(sender))
-					HoverImageCommand.Execute(sender);
+					HoverImageCommand.Execute(new ImageEventArgs() { Position = pos, Image = (Image)sender });
 		}
 
 		/// <summary>
 		/// Called when the mouse leaves the image
+		/// It will send ImageEventArgs with it
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
 		private void OnImageMouseExit(object sender, System.Windows.Input.MouseEventArgs e)
 		{
+			int pos = ImageCollection.FindIndex((x) => x == (Image)sender);
+
 			if (UnHoverImageCommand != null)
 				if (UnHoverImageCommand.CanExecute(sender))
-					UnHoverImageCommand.Execute(sender);
+					UnHoverImageCommand.Execute(new ImageEventArgs() { Position = pos, Image = (Image)sender });
 		}
 
 		/// <summary>
