@@ -8,5 +8,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="800">
 
-    <ContentControl Content="{Binding Source={x:Static ViewModels:NavigationController.Instance}, Path=CurrentView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" />
+    <Frame 
+        Content="{Binding Source={x:Static ViewModels:NavigationController.Instance}, Path=CurrentView, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
+        NavigationUIVisibility="Hidden"   
+        />
 </Window>

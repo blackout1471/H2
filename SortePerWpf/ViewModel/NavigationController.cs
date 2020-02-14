@@ -24,7 +24,7 @@ namespace SortePerWpf.ViewModel
 
 		private NavigationController() 
 		{
-			CurrentView = new SortePerGameViewModel();
+			CurrentView = new SortePerGameSettingsViewModel();
 		}
 
 		/// <summary>
@@ -35,10 +35,8 @@ namespace SortePerWpf.ViewModel
 			get { return currentView; }
 			set 
 			{
-				if (value != currentView)
-					OnPropertyChanged();
-
-				currentView = value; 
+				currentView = value;
+				OnPropertyChanged();
 			}
 		}
 		private BaseViewModel currentView;

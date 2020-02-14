@@ -1,7 +1,5 @@
-﻿using SortePerWpf.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,12 +16,11 @@ using System.Windows.Shapes;
 namespace SortePerWpf.View
 {
     /// <summary>
-    /// Interaction logic for SortePerGame.xaml
+    /// Interaction logic for SortePerGameSettingsView.xaml
     /// </summary>
-    public partial class SortePerGame : UserControl
+    public partial class SortePerGameSettingsView : Page
     {
-
-        public SortePerGame()
+        public SortePerGameSettingsView()
         {
             InitializeComponent();
         }

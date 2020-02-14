@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\InverseBoolConverter.cs" />
     <Compile Include="Converters\SortePerCardConverter.cs" />
     <Compile Include="Converters\SortePerCardListConverter.cs" />
     <Compile Include="Model\Cards\Card.cs" />
@@ -68,9 +69,13 @@
     <Compile Include="UserControls\PlayerHandControl.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\NavigationController.cs" />
+    <Compile Include="ViewModel\SortePerGameSettingsViewModel.cs" />
     <Compile Include="ViewModel\SortePerGameViewModel.cs" />
-    <Compile Include="View\SortePerGame.xaml.cs">
-      <DependentUpon>SortePerGame.xaml</DependentUpon>
+    <Compile Include="View\SortePerGameSettingsView.xaml.cs">
+      <DependentUpon>SortePerGameSettingsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SortePerGameView.xaml.cs">
+      <DependentUpon>SortePerGameView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -84,7 +89,11 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\SortePerGame.xaml">
+    <Page Include="View\SortePerGameSettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\SortePerGameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -150,6 +159,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Assets\SortePerCards\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Table.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

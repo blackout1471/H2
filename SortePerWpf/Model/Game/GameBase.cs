@@ -44,18 +44,22 @@ namespace SortePerWpf.Model.Game
         }
 
         /// <summary>
+        /// Sets the current players playing
+        /// </summary>
+        /// <param name="players"></param>
+        public void SetPlayers(List<Player> players)
+        {
+            Players = players;
+        }
+
+        /// <summary>
         /// Should be called when the game starts
         /// </summary>
         public abstract void Start();
 
         /// <summary>
-        /// Should be called when an player is changing turn
+        /// Should be called when changing turn
         /// </summary>
         public abstract void ChangeTurn();
-
-        /// <summary>
-        /// Should be called when the game ends
-        /// </summary>
-        public abstract void End();
     }
 }

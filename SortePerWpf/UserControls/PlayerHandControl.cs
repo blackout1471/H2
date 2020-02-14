@@ -24,7 +24,6 @@ namespace SortePerWpf.UserControls
 
     public class PlayerHandControl : Canvas
     {
-
         #region Dependency Properties
 
         /// <summary>
@@ -56,6 +55,20 @@ namespace SortePerWpf.UserControls
 			DependencyProperty.Register("ClickImageCommand", typeof(ICommand), typeof(PlayerHandControl), new PropertyMetadata(null));
 
 
+		/// <summary>
+		/// Whether the Click Image Command can be executed
+		/// </summary>
+		public bool CanClickImageCommandExecute
+		{
+			get { return (bool)GetValue(CanClickImageCommandExecuteProperty); }
+			set { SetValue(CanClickImageCommandExecuteProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for CanClickImageCommandExecute.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty CanClickImageCommandExecuteProperty =
+			DependencyProperty.Register("CanClickImageCommandExecute", typeof(bool), typeof(PlayerHandControl), new PropertyMetadata(true));
+
+
 
 		/// <summary>
 		/// The un hover command can be bound
@@ -70,6 +83,19 @@ namespace SortePerWpf.UserControls
 		public static readonly DependencyProperty UnHoverImageCommandProperty =
 			DependencyProperty.Register("UnHoverImageCommand", typeof(ICommand), typeof(PlayerHandControl), new PropertyMetadata(null));
 
+
+		/// <summary>
+		/// Checks whether the Hover commands can be executed
+		/// </summary>
+		public bool CanHoverImageCommandExecute
+		{
+			get { return (bool)GetValue(CanHoverImageCommandExecuteProperty); }
+			set { SetValue(CanHoverImageCommandExecuteProperty, value); }
+		}
+
+		// Using a DependencyProperty as the backing store for CanHoverImageCommandExecute.  This enables animation, styling, binding, etc...
+		public static readonly DependencyProperty CanHoverImageCommandExecuteProperty =
+			DependencyProperty.Register("CanHoverImageCommandExecute", typeof(bool), typeof(PlayerHandControl), new PropertyMetadata(true));
 
 
 		/// <summary>
@@ -159,7 +185,8 @@ namespace SortePerWpf.UserControls
 
 			if (ClickImageCommand != null)
 				if (ClickImageCommand.CanExecute(sender))
-					ClickImageCommand.Execute(new ImageEventArgs() { Position = pos, Image = (Image)sender});
+					if (CanClickImageCommandExecute)
+						ClickImageCommand.Execute(new ImageEventArgs() { Position = pos, Image = (Image)sender});
 		}
 
 		/// <summary>
@@ -174,7 +201,8 @@ namespace SortePerWpf.UserControls
 
 			if (HoverImageCommand != null)
 				if (HoverImageCommand.CanExecute(sender))
-					HoverImageCommand.Execute(new ImageEventArgs() { Position = pos, Image = (Image)sender });
+					if (CanHoverImageCommandExecute)
+						HoverImageCommand.Execute(new ImageEventArgs() { Position = pos, Image = (Image)sender });
 		}
 
 		/// <summary>
@@ -188,7 +216,7 @@ namespace SortePerWpf.UserControls
 			int pos = ImageCollection.FindIndex((x) => x == (Image)sender);
 
 			if (UnHoverImageCommand != null)
-				if (UnHoverImageCommand.CanExecute(sender))
+				if (UnHoverImageCommand.CanExecute(CanHoverImageCommandExecute))
 					UnHoverImageCommand.Execute(new ImageEventArgs() { Position = pos, Image = (Image)sender });
 		}
 

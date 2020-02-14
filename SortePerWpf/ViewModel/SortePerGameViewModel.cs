@@ -15,133 +15,240 @@ namespace SortePerWpf.ViewModel
 {
     public class SortePerGameViewModel : BaseViewModel
     {
+
+        #region Commands
         /// <summary>
-        /// The command for when hovering a card
+        /// The command for when current player is hovering
         /// </summary>
-        public ICommand HoverCardCommand => new RelayCommand((o) => HoverCardEvent((ImageEventArgs)o));
+        public ICommand HoverCurrentPlayerCommand => new RelayCommand((args) =>
+        {
+            ImageEventArgs arg = (ImageEventArgs)args;
+            Canvas.SetBottom(arg.Image, 20);
+            Canvas.SetZIndex(arg.Image, 1);
+        });
 
         /// <summary>
-        /// The command for when leaving a hovered card
+        /// The command for when current player leaves a image
         /// </summary>
-        public ICommand UnHoverCardCommand => new RelayCommand((o) => UnHoverCardEvent((ImageEventArgs)o));
+        public ICommand UnHoverCurrentPlayerCommand => new RelayCommand((args) =>
+        {
+            ImageEventArgs arg = (ImageEventArgs)args;
+
+            if (!upheldCards.Exists((x) => x.Position == arg.Position))
+                Canvas.SetBottom(arg.Image, 0);
+
+            Canvas.SetZIndex(arg.Image, 0);
+        });
 
         /// <summary>
-        /// The command for when clicking a card on the opponent
+        /// Called when the current player click it's own cards
         /// </summary>
-        public ICommand ClickOnOpponentCardCommand => new RelayCommand((o) => ClickCardFromOpponentEvent((ImageEventArgs)o));
+        public ICommand ClickCardCurrentPlayerCommand => new RelayCommand((args) =>
+        {
+            ImageEventArgs arg = (ImageEventArgs)args;
+            AddCardToPairs(arg);
+
+            if (upheldCards.Count == 2)
+                if (IsPairAnMatch())
+                    RemoveCurrentPair();
+                else
+                    NormaliseNotPairs();
+
+            OnPropertyChanged(null);
+        });
 
         /// <summary>
-        /// The command for when the current player clicks it's own cards
+        /// When hovering over the opponents cards
         /// </summary>
-        public ICommand ClickOnCurrentCardCommand => new RelayCommand((o) => ClickCardCurrentEvent((ImageEventArgs)o));
+        public ICommand HoverOpponentPlayerCommand => new RelayCommand((args) =>
+        {
+            ImageEventArgs arg = (ImageEventArgs)args;
+            Canvas.SetBottom(arg.Image, 20);
+            Canvas.SetZIndex(arg.Image, 1);
+        });
+
+        /// <summary>
+        /// When leaving the hovered card
+        /// </summary>
+        public ICommand UnHoverOpponentPlayerCommand => new RelayCommand((args) =>
+        {
+            ImageEventArgs arg = (ImageEventArgs)args;
+            Canvas.SetBottom(arg.Image, 0);
+            Canvas.SetZIndex(arg.Image, 0);
+        });
+
+        /// <summary>
+        /// Called when clicking opponents cards
+        /// </summary>
+        public ICommand ClickCardOpponentPlayerCommand => new RelayCommand((args) =>
+        {
+            ImageEventArgs arg = (ImageEventArgs)args;
+
+            Game.DrawFromOpponent(arg.Position);
+            CanPlayerDrawCard = false;
+
+            OnPropertyChanged(null);
+        });
+
+        /// <summary>
+        /// End the turn command
+        /// </summary>
+        public ICommand EndTurnCommand => new RelayCommand((o) => ChangeTurns());
+
+        #endregion
+
+        /// <summary>
+        /// The current opponent
+        /// </summary>
+        public Player OpponentPlayer
+        {
+            get { return opponentPlayer; }
+            set 
+            {
+                if (value == opponentPlayer)
+                    return;
+
+                opponentPlayer = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// The current player
         /// </summary>
-        public Player CurrentPlayer => Game.CurrentPlayer;
+        public Player CurrentPlayer
+        {
+            get { return currentPlayer; }
+            set 
+            {
+                if (value == currentPlayer)
+                    return;
+
+                currentPlayer = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         /// <summary>
-        /// The current game which is going happening
+        /// Whether the current player has drawn card
+        /// </summary>
+        public bool CanPlayerDrawCard
+        {
+            get { return canPlayerDrawCard; }
+            private set { 
+                canPlayerDrawCard = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The current game
         /// </summary>
         public SortePerGame Game
         {
             get { return game; }
-            private set { game = value; }
+            set 
+            {
+                if (game == value)
+                    return;
+
+                game = value;
+                OnPropertyChanged();
+            }
         }
 
         private SortePerGame game;
-        ImageEventArgs lastClickedCard; // The current upheld card by the current player
+        private Player opponentPlayer;
+        private Player currentPlayer;
+        private bool canPlayerDrawCard;
+
+        /// <summary>
+        /// The current pairs which has to be checked
+        /// </summary>
+        private List<ImageEventArgs> upheldCards;
 
         public SortePerGameViewModel()
         {
             Game = new SortePerGame();
+            upheldCards = new List<ImageEventArgs>();
+        }
 
-            Game.AddNewPlayer(new Player("Emil"));
-            Game.AddNewPlayer(new Player("Hubba"));
+        /// <summary>
+        /// Initialise all the game values
+        /// </summary>
+        public void InitGame()
+        {
             Game.Start();
+
+            CanPlayerDrawCard = true;
+            CurrentPlayer = Game.CurrentPlayer;
+            OpponentPlayer = Game.OpponentPlayer;
         }
 
         /// <summary>
-        /// Sets the position and the z index for the image
+        /// Change the turn and update ui
         /// </summary>
-        /// <param name="image"></param>
-        /// <param name="posFromBot"></param>
-        /// <param name="zIndex"></param>
-        private void SetImagePosition(Image image, int posFromBot, int zIndex)
+        private void ChangeTurns()
         {
-            Canvas.SetBottom(image, posFromBot);
-            Canvas.SetZIndex(image, zIndex);
+            Game.ChangeTurn();
+            CanPlayerDrawCard = true;
+            upheldCards.Clear();
+            CurrentPlayer = Game.CurrentPlayer;
+            OpponentPlayer = Game.OpponentPlayer;
         }
 
-        #region Events
 
         /// <summary>
-        /// Method for when hovering a card
-        /// </summary>
-        /// <param name="image"></param>
-        private void HoverCardEvent(ImageEventArgs args)
-        {
-            if (lastClickedCard != null)
-                if (args.Image == lastClickedCard.Image)
-                    return;
-
-            SetImagePosition(args.Image, 20, 1);
-        }
-
-        /// <summary>
-        /// Method for when leaving a card
-        /// </summary>
-        /// <param name="image"></param>
-        private void UnHoverCardEvent(ImageEventArgs args)
-        {
-            if (lastClickedCard != null)
-                if (args.Image == lastClickedCard.Image)
-                    return;
-
-            SetImagePosition(args.Image, 0, 0);
-        }
-
-        /// <summary>
-        /// Method for when clicking on opponents cards
-        /// </summary>
-        /// <param name="image"></param>
-        private void ClickCardFromOpponentEvent(ImageEventArgs args)
-        {
-            Game.DrawFromOpponent(args.Position);
-            OnPropertyChanged(null);
-        }
-
-        /// <summary>
-        /// Method for when current player is clicking
+        /// Adds cards to the current pair that will be checked if match
         /// </summary>
         /// <param name="args"></param>
-        /// TODO: Make this method smaller
-        private void ClickCardCurrentEvent(ImageEventArgs args)
+        private void AddCardToPairs(ImageEventArgs args)
         {
-            if (lastClickedCard != null)
-            {
-                if (lastClickedCard.Position == args.Position)
-                    return;
-
-                Card c1 = CurrentPlayer.Hand[lastClickedCard.Position];
-                Card c2 = CurrentPlayer.Hand[args.Position];
-
-                if (Game.IsCardsPair(c1, c2))
-                {
-                    CurrentPlayer.RemoveCardFromHand(c1);
-                    CurrentPlayer.RemoveCardFromHand(c2);
-                    OnPropertyChanged(null);
-                }
-                lastClickedCard = null;
-            }
-            else
-                lastClickedCard = args;
-
-            SetImagePosition(args.Image, 20, 0);
+            if (!upheldCards.Exists((x) => x.Position == args.Position) && upheldCards.Count != 2)
+                upheldCards.Add(args);
         }
 
-        #endregion
+        /// <summary>
+        /// Returns whether the current pair is a match
+        /// </summary>
+        /// <returns></returns>
+        private bool IsPairAnMatch()
+        {
+            Card c1 = CurrentPlayer.Hand[upheldCards[0].Position];
+            Card c2 = CurrentPlayer.Hand[upheldCards[1].Position];
 
+            return Game.IsCardsPair(c1, c2);
+        }
+
+        /// <summary>
+        /// Removes the current pair from the hand
+        /// </summary>
+        private void RemoveCurrentPair()
+        {
+            Card c1 = CurrentPlayer.Hand[upheldCards[0].Position];
+            Card c2 = CurrentPlayer.Hand[upheldCards[1].Position];
+
+            CurrentPlayer.RemoveCardFromHand(c1);
+            CurrentPlayer.RemoveCardFromHand(c2);
+
+            upheldCards.Clear();
+        }
+
+        /// <summary>
+        /// Called when the pairs is not a match
+        /// Clears the current upheld cards and normalise cards position
+        /// </summary>
+        private void NormaliseNotPairs()
+        {
+            for (int i = 0; i < upheldCards.Count; i++)
+            {
+                Canvas.SetBottom(upheldCards[i].Image, 0);
+                Canvas.SetZIndex(upheldCards[i].Image, 0);
+            }
+
+            upheldCards.Clear();
+        }
 
     }
 }

@@ -11,6 +11,7 @@ namespace SortePerWpf.Model.Game
 {
     public class SortePerGame : GameBase
     {
+
         /// <summary>
         /// This games deck
         /// </summary>
@@ -24,7 +25,7 @@ namespace SortePerWpf.Model.Game
         /// <summary>
         /// The opponent which the current player has to draw from
         /// </summary>
-        public Player OpponentPlayer => (currentPlayerIndex - 1 < 0) ? Players[Players.Count - 1] : Players[currentPlayerIndex - 1];
+        public Player OpponentPlayer => (currentPlayerIndex+1 < Players.Count) ? Players[currentPlayerIndex + 1] : Players[0];
 
         private Deck deck;
         private int currentPlayerIndex;
@@ -69,28 +70,20 @@ namespace SortePerWpf.Model.Game
         }
 
         /// <summary>
-        /// Called to change a turn for a player
-        /// </summary>
-        public override void ChangeTurn()
-        {
-            ChangeToNextPlayer();
-        }
-
-        /// <summary>
-        /// Called when ending the game
-        /// </summary>
-        public override void End()
-        {
-            
-        }
-
-        /// <summary>
         /// Called when starting a game
         /// </summary>
         public override void Start()
         {
             CreateNewDeck();
             AssignPlayerCards();
+        }
+
+        /// <summary>
+        /// Change to the next player
+        /// </summary>
+        public override void ChangeTurn()
+        {
+            ChangeToNextPlayer();
         }
 
         #region Game Flow
@@ -105,7 +98,7 @@ namespace SortePerWpf.Model.Game
         }
 
         /// <summary>
-        /// Assigns the players the cards
+        /// Assigns players the cards from the deck
         /// </summary>
         private void AssignPlayerCards()
         {
@@ -131,6 +124,7 @@ namespace SortePerWpf.Model.Game
             else
                 currentPlayerIndex = 0;
         }
+      
         #endregion
     }
 }

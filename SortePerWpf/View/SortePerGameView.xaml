@@ -1,0 +1,84 @@
+﻿<Page x:Class="SortePerWpf.View.SortePerGameView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SortePerWpf.View"
+      xmlns:usrcon="clr-namespace:SortePerWpf.UserControls"
+      xmlns:conv="clr-namespace:SortePerWpf.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SortePerGameView"
+      Background="Green"
+      >
+    <Page.Resources>
+        <conv:SortePerCardListConverter x:Key="SortePerCardListConverter"></conv:SortePerCardListConverter>
+        <conv:InverseBoolConverter x:Key="InverseBoolConverter" />
+    </Page.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="135*"/>
+            <RowDefinition Height="174*"/>
+            <RowDefinition Height="142*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="212*"/>
+            <ColumnDefinition Width="367*"/>
+            <ColumnDefinition Width="221*"/>
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+            Source="/Assets/Table.png"
+               Stretch="Fill" Grid.RowSpan="3" Margin="0,0,0,-0.315"/>
+
+        <usrcon:PlayerHandControl RenderTransformOrigin="0.5, 0.5" Grid.Column="2" Grid.Row="1"
+            ImageCollection="{Binding OpponentPlayer.Hand, Converter={StaticResource SortePerCardListConverter}}"
+            HoverImageCommand="{Binding HoverOpponentPlayerCommand}"
+            UnHoverImageCommand="{Binding UnHoverOpponentPlayerCommand}"
+            ClickImageCommand="{Binding ClickCardOpponentPlayerCommand}"
+            CanHoverImageCommandExecute="{Binding CanPlayerDrawCard}"
+            CanClickImageCommandExecute="{Binding CanPlayerDrawCard}">
+            <usrcon:PlayerHandControl.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </usrcon:PlayerHandControl.LayoutTransform>
+        </usrcon:PlayerHandControl>
+
+
+        <usrcon:PlayerHandControl Grid.Column="1" Grid.Row="2"
+            ImageCollection="{Binding CurrentPlayer.Hand, Converter={StaticResource SortePerCardListConverter}}"
+            HoverImageCommand="{Binding HoverCurrentPlayerCommand}"
+            UnHoverImageCommand="{Binding UnHoverCurrentPlayerCommand}"
+            ClickImageCommand="{Binding ClickCardCurrentPlayerCommand}"
+        />
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="41*"/>
+                <RowDefinition Height="91*"/>
+                <RowDefinition Height="42*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="41*"/>
+                <ColumnDefinition Width="285*"/>
+                <ColumnDefinition Width="41*"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="{Binding OpponentPlayer.Name}"
+                       />
+
+            <TextBlock Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                       Foreground="White"
+                       FontSize="16"
+                       Text="{Binding CurrentPlayer.Name}"/>
+
+            <Button Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center"
+                Content="End Turn" 
+                Command="{Binding EndTurnCommand}"
+                IsEnabled="{Binding CanPlayerDrawCard, Converter={StaticResource InverseBoolConverter}}"/>
+        </Grid>
+    </Grid>
+</Page>
