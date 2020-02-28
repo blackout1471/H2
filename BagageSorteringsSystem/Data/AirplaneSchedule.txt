@@ -1,0 +1,12 @@
+0|Jylland|0|0|2
+1|USA|1|0|4
+2|Argentina|2|3|4
+3|Italien|0|4|4
+4|Egypten|4|4|5
+5|Tyskland|4|6|7
+6|Frankrig|1|5|6
+7|Tyrkiet|2|5|6
+8|Jylland|3|5|6
+9|Jylland|8|6|7
+10|USA|6|6|7
+11|Argentina|7|6|7

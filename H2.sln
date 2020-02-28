@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProducerConsumer", "Produce
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flaskebaand", "Flaskebaand\Flaskebaand.csproj", "{E30FB8E7-F0F3-4CB7-AB71-9C4D87B85BDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BagageSorteringsSystem", "BagageSorteringsSystem\BagageSorteringsSystem.csproj", "{2D1801B1-0C6D-4DC7-B51B-F7B59CCF3446}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{E30FB8E7-F0F3-4CB7-AB71-9C4D87B85BDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E30FB8E7-F0F3-4CB7-AB71-9C4D87B85BDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E30FB8E7-F0F3-4CB7-AB71-9C4D87B85BDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D1801B1-0C6D-4DC7-B51B-F7B59CCF3446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D1801B1-0C6D-4DC7-B51B-F7B59CCF3446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D1801B1-0C6D-4DC7-B51B-F7B59CCF3446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D1801B1-0C6D-4DC7-B51B-F7B59CCF3446}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
