@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Hello World</title>
+	</head>
+	<body onload="OnLoadMethod()">
+	
+	<p id="textToChange">
+		Skift Text
+	</p>
+	<button onclick="OnButtonClickChangeText()"> Click Me </button>
+		<script>
+			function OnLoadMethod() {
+				alert("Hello World");
+			};
+			
+			function OnButtonClickChangeText() {
+				document.getElementById("textToChange").innerHTML = "Hello World";
+			};
+		
+		</script>
+	</body>
+</html>
